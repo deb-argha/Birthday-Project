@@ -11,13 +11,15 @@ const OpeningPage = () => {
   const [showImage, setShowImage] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
-  const happyBirthday = "Happy Birthday";
+  const happyText = "Happy";
+  const birthdayText = "Birthday";
+  const totalLetters = happyText.length + birthdayText.length;
   
   useEffect(() => {
     // Drop letters one by one
     const letterInterval = setInterval(() => {
       setVisibleLetters((prev) => {
-        if (prev >= happyBirthday.length) {
+        if (prev >= totalLetters) {
           clearInterval(letterInterval);
           // Show cap after all letters
           setTimeout(() => setShowCap(true), 300);
@@ -119,94 +121,137 @@ const OpeningPage = () => {
         ))}
       </div>
 
-      {/* Main content */}
+      {/* Main content - Two column layout */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
-        {/* Dropping text */}
-        <div className="relative mb-8">
-          <h1 className="font-pacifico text-5xl md:text-7xl lg:text-8xl text-primary flex flex-wrap justify-center">
-            {happyBirthday.split("").map((letter, index) => (
-              <span
-                key={index}
-                className={`inline-block transition-all duration-300 ${
-                  index < visibleLetters
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 -translate-y-20"
-                }`}
-                style={{
-                  transitionDelay: `${index * 50}ms`,
-                }}
-              >
-                {letter === " " ? "\u00A0" : letter}
-              </span>
-            ))}
-          </h1>
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           
-          {/* Birthday cap on 'y' */}
-          {showCap && (
-            <span
-              className={`absolute text-4xl md:text-5xl transition-all duration-500 ${
-                capLanded ? "translate-y-0 rotate-12" : "-translate-y-32 rotate-0"
-              }`}
-              style={{
-                right: "0%",
-                top: "-35px",
-              }}
-            >
-              🎂
-            </span>
-          )}
-        </div>
+          {/* LEFT SIDE - Text */}
+          <div className="flex flex-col items-start justify-center order-2 md:order-1">
+            {/* Happy text */}
+            <div className="relative mb-2">
+              <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-primary flex">
+                {happyText.split("").map((letter, index) => (
+                  <span
+                    key={index}
+                    className={`inline-block transition-all duration-300 ${
+                      index < visibleLetters
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 -translate-y-20"
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 50}ms`,
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </h1>
+            </div>
 
-        {/* Balloon image section */}
-        {showImage && (
-          <div className="relative mb-8 animate-fade-in-up">
-            {/* Balloons */}
-            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 flex gap-2">
-              {["🎈", "🎈", "🎈"].map((balloon, i) => (
+            {/* Birthday text with cap */}
+            <div className="relative mb-6">
+              <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-primary flex">
+                {birthdayText.split("").map((letter, index) => {
+                  const globalIndex = happyText.length + index;
+                  return (
+                    <span
+                      key={index}
+                      className={`inline-block transition-all duration-300 ${
+                        globalIndex < visibleLetters
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 -translate-y-20"
+                      }`}
+                      style={{
+                        transitionDelay: `${globalIndex * 50}ms`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  );
+                })}
+              </h1>
+              
+              {/* Birthday cap on 'y' */}
+              {showCap && (
                 <span
-                  key={i}
-                  className="text-4xl animate-float"
+                  className={`absolute text-3xl md:text-4xl transition-all duration-500 ${
+                    capLanded ? "translate-y-0 rotate-12" : "-translate-y-32 rotate-0"
+                  }`}
                   style={{
-                    animationDelay: `${i * 0.3}s`,
-                    color: i === 0 ? "#ff6b9d" : i === 1 ? "#a78bfa" : "#fbbf24",
+                    right: "-10px",
+                    top: "-25px",
                   }}
                 >
-                  {balloon}
+                  🎂
                 </span>
-              ))}
-            </div>
-            
-            {/* String lines */}
-            <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 flex gap-8">
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-px h-16 bg-gradient-to-b from-muted-foreground/50 to-transparent"
-                />
-              ))}
+              )}
             </div>
 
-            {/* Main image */}
-            <div className="relative p-2 bg-card rounded-2xl shadow-card">
-              <img
-                src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&h=300&fit=crop"
-                alt="Birthday celebration"
-                className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-xl"
-              />
-              <div className="absolute -bottom-2 -right-2 text-3xl animate-bounce">
-                💖
-              </div>
-            </div>
+            {/* Date text */}
+            {showContent && (
+              <p className="font-dancing text-2xl md:text-3xl text-foreground animate-fade-in">
+                12th January ✨
+              </p>
+            )}
           </div>
-        )}
 
-        {/* Date and button */}
+          {/* RIGHT SIDE - Image */}
+          <div className="flex flex-col items-center justify-center order-1 md:order-2">
+            {/* Balloon image section */}
+            {showImage && (
+              <div className="relative mb-4 animate-fade-in-up">
+                {/* Balloons */}
+                <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 flex gap-2">
+                  {["🎈", "🎈", "🎈"].map((balloon, i) => (
+                    <span
+                      key={i}
+                      className="text-4xl animate-float"
+                      style={{
+                        animationDelay: `${i * 0.3}s`,
+                        color: i === 0 ? "#ff6b9d" : i === 1 ? "#a78bfa" : "#fbbf24",
+                      }}
+                    >
+                      {balloon}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* String lines */}
+                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 flex gap-8">
+                  {[...Array(3)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-px h-16 bg-gradient-to-b from-muted-foreground/50 to-transparent"
+                    />
+                  ))}
+                </div>
+
+                {/* Main image */}
+                <div className="relative p-2 bg-card rounded-2xl shadow-card">
+                  <img
+                    src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&h=300&fit=crop"
+                    alt="Birthday celebration"
+                    className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-xl"
+                  />
+                  <div className="absolute -bottom-2 -right-2 text-3xl animate-bounce">
+                    💖
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Dear Aditi text */}
+            {showContent && (
+              <p className="font-dancing text-2xl md:text-3xl text-foreground animate-bounce-in">
+                Dear Aditi 😋
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Button - Centered below both columns */}
         {showContent && (
-          <div className="text-center animate-bounce-in">
-            <p className="font-dancing text-3xl md:text-4xl text-foreground mb-6">
-              27th May ✨
-            </p>
-            
+          <div className="mt-12 animate-bounce-in">
             <Button
               onClick={() => navigate("/surprise")}
               className="group relative px-8 py-6 text-lg font-poppins bg-gradient-to-r from-primary to-lavender hover:from-lavender hover:to-primary transition-all duration-500 shadow-glow hover:shadow-[0_0_40px_hsl(350_70%_65%/0.6)] rounded-full"
