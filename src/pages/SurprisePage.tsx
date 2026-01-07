@@ -123,7 +123,7 @@ const SurprisePage = () => {
                 <div
                   key={i}
                   className="relative cursor-pointer group"
-                  onMouseEnter={() => blowCandle(i)}
+                  onClick={() => blowCandle(i)}
                 >
                   {/* Candle stick */}
                   <div
@@ -162,7 +162,7 @@ const SurprisePage = () => {
         {/* Instructions */}
         {!allBlown && (
           <p className="font-dancing text-xl md:text-2xl text-foreground/80 text-center mb-8 animate-pulse">
-            Blow the candles one by one by placing the cursor on them 🌬️
+            Click on the candles one by one to blow them 🌬️
           </p>
         )}
 
