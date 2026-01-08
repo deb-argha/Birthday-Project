@@ -129,17 +129,21 @@ const OpeningPage = () => {
           <div className="flex flex-col items-start justify-center order-2 md:order-1">
             {/* Happy text */}
             <div className="relative mb-2">
-              <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-primary flex">
+              <h1 className="flex" style={{ fontFamily: "'Bangers', cursive" }}>
                 {happyText.split("").map((letter, index) => (
                   <span
                     key={index}
-                    className={`inline-block transition-all duration-300 ${
+                    className={`inline-block transition-all duration-300 text-6xl md:text-7xl lg:text-8xl ${
                       index < visibleLetters
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 -translate-y-20"
                     }`}
                     style={{
                       transitionDelay: `${index * 50}ms`,
+                      color: "#fff8f0",
+                      WebkitTextStroke: "2px hsl(350, 70%, 50%)",
+                      textShadow: "3px 3px 0px hsl(350, 70%, 60%), 5px 5px 10px rgba(0,0,0,0.2)",
+                      fontWeight: 700,
                     }}
                   >
                     {letter}
@@ -150,19 +154,23 @@ const OpeningPage = () => {
 
             {/* Birthday text with cap */}
             <div className="relative mb-6">
-              <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-primary flex">
+              <h1 className="flex" style={{ fontFamily: "'Bangers', cursive" }}>
                 {birthdayText.split("").map((letter, index) => {
                   const globalIndex = happyText.length + index;
                   return (
                     <span
                       key={index}
-                      className={`inline-block transition-all duration-300 ${
+                      className={`inline-block transition-all duration-300 text-6xl md:text-7xl lg:text-8xl ${
                         globalIndex < visibleLetters
                           ? "opacity-100 translate-y-0"
                           : "opacity-0 -translate-y-20"
                       }`}
                       style={{
                         transitionDelay: `${globalIndex * 50}ms`,
+                        color: "#fff8f0",
+                        WebkitTextStroke: "2px hsl(350, 70%, 50%)",
+                        textShadow: "3px 3px 0px hsl(350, 70%, 60%), 5px 5px 10px rgba(0,0,0,0.2)",
+                        fontWeight: 700,
                       }}
                     >
                       {letter}
@@ -174,12 +182,12 @@ const OpeningPage = () => {
               {/* Birthday cap on 'y' */}
               {showCap && (
                 <span
-                  className={`absolute text-3xl md:text-4xl transition-all duration-500 ${
+                  className={`absolute text-4xl md:text-5xl transition-all duration-500 ${
                     capLanded ? "translate-y-0 rotate-12" : "-translate-y-32 rotate-0"
                   }`}
                   style={{
-                    right: "-10px",
-                    top: "-25px",
+                    right: "-15px",
+                    top: "-30px",
                   }}
                 >
                   🎂
@@ -189,7 +197,7 @@ const OpeningPage = () => {
 
             {/* Date text */}
             {showContent && (
-              <p className="font-dancing text-2xl md:text-3xl text-foreground animate-fade-in">
+              <p className="font-dancing text-3xl md:text-4xl text-foreground animate-fade-in">
                 12th January ✨
               </p>
             )}
@@ -199,13 +207,13 @@ const OpeningPage = () => {
           <div className="flex flex-col items-center justify-center order-1 md:order-2">
             {/* Balloon image section */}
             {showImage && (
-              <div className="relative mb-4 animate-fade-in-up">
+              <div className="relative mb-6 animate-fade-in-up">
                 {/* Balloons */}
-                <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 flex gap-2">
+                <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 flex gap-3">
                   {["🎈", "🎈", "🎈"].map((balloon, i) => (
                     <span
                       key={i}
-                      className="text-4xl animate-float"
+                      className="text-5xl animate-float"
                       style={{
                         animationDelay: `${i * 0.3}s`,
                         color: i === 0 ? "#ff6b9d" : i === 1 ? "#a78bfa" : "#fbbf24",
@@ -217,23 +225,23 @@ const OpeningPage = () => {
                 </div>
                 
                 {/* String lines */}
-                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 flex gap-8">
+                <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 flex gap-10">
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={i}
-                      className="w-px h-16 bg-gradient-to-b from-muted-foreground/50 to-transparent"
+                      className="w-px h-20 bg-gradient-to-b from-muted-foreground/50 to-transparent"
                     />
                   ))}
                 </div>
 
-                {/* Main image */}
-                <div className="relative p-2 bg-card rounded-2xl shadow-card">
+                {/* Main image - Perfect circle */}
+                <div className="relative p-3 bg-card rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.15)] border-4 border-white/60">
                   <img
-                    src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=300&h=300&fit=crop"
+                    src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=400&fit=crop"
                     alt="Birthday celebration"
-                    className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-xl"
+                    className="w-56 h-56 md:w-72 md:h-72 object-cover rounded-full"
                   />
-                  <div className="absolute -bottom-2 -right-2 text-3xl animate-bounce">
+                  <div className="absolute -bottom-2 -right-2 text-4xl animate-bounce">
                     💖
                   </div>
                 </div>
@@ -242,8 +250,8 @@ const OpeningPage = () => {
 
             {/* Dear Aditi text */}
             {showContent && (
-              <p className="font-dancing text-2xl md:text-3xl text-foreground animate-bounce-in">
-                Dear Aditi 😋
+              <p className="font-dancing text-3xl md:text-4xl text-foreground animate-bounce-in">
+                Dear Aditi 🎀
               </p>
             )}
           </div>
