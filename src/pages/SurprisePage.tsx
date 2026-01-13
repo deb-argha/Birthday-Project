@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, Sparkles } from "lucide-react";
+import birthdayMusic from "../Music/_Sare_Bolo_Happy_Birthday_Birthday_Song_Ringtone_(by Fringster.com).mp3"
 
 const SurprisePage = () => {
   const navigate = useNavigate();
@@ -11,18 +12,37 @@ const SurprisePage = () => {
   const [countdown, setCountdown] = useState(10);
   const [showNextButton, setShowNextButton] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [showPopper, setShowPopper] = useState(true);
 
   const totalCandles = 12;
   const allBlown = blownCandles.length === totalCandles;
+
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowPopper(false);
+  }, 3000); // confetti duration
+
+  return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+  if (audioRef.current) {
+    audioRef.current.volume = 0.6; // optional, softer
+    audioRef.current.play().catch(() => {
+      // autoplay may fail on some browsers until user interacts
+    });
+  }
+  }, []);
 
   useEffect(() => {
     if (allBlown && !showCelebration) {
       setShowCelebration(true);
       setShowWishPopup(true);
       
-      // Play birthday music
+      // Stop birthday music when candles are blown
       if (audioRef.current) {
-        audioRef.current.play().catch(console.log);
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
     }
   }, [allBlown, showCelebration]);
@@ -45,10 +65,40 @@ const SurprisePage = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-lavender-light via-rose-light to-peach-light">
+      
       {/* Birthday music */}
-      <audio ref={audioRef} loop>
-        <source src="https://www.soundjay.com/human/sounds/applause-01.mp3" type="audio/mpeg" />
+      <audio ref={audioRef} loop preload="auto">
+        <source src={birthdayMusic} type="audio/mpeg" />
       </audio>
+
+      {/* Party popper burst on page load */}
+{showPopper && (
+  <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+    {[...Array(120)].map((_, i) => {
+      const startX = Math.random() * 100; // anywhere on screen
+      const driftX = (Math.random() - 0.5) * 400; // spread left/right
+
+      return (
+        <div
+          key={i}
+          className="absolute animate-confetti"
+          style={{
+            left: `${startX}%`,
+            top: "-10%",
+            transform: `translateX(${driftX}px) rotate(${Math.random() * 720}deg)`,
+            animationDelay: `${Math.random() * 0.8}s`,
+            animationDuration: `${2.8 + Math.random() * 1.5}s`,
+            fontSize: `${12 + Math.random() * 14}px`,
+          }}
+        >
+          {["🎊", "🎉", "✨", "💖", "🌸"][Math.floor(Math.random() * 5)]}
+        </div>
+      );
+    })}
+  </div>
+)}
+
+
 
       {/* Celebration confetti */}
       {showCelebration && (
@@ -90,7 +140,7 @@ const SurprisePage = () => {
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
         <h2 className="font-pacifico text-3xl md:text-5xl text-primary mb-12 text-center">
-          🎂 Make a Wish! 🎂
+          🥳 Blow out the Candles! 🥳
         </h2>
 
         {/* Cake */}
@@ -99,7 +149,7 @@ const SurprisePage = () => {
           <div className="relative w-80 md:w-96">
             
             {/* Candles - positioned at the very top, sitting on cake */}
-            <div className="relative flex justify-center gap-2 md:gap-3 mb-0 px-4">
+            <div className="relative flex justify-center gap-2 md:gap-5 mb-0 px-4">
               {[...Array(totalCandles)].map((_, i) => (
                 <div
                   key={i}
@@ -199,7 +249,7 @@ const SurprisePage = () => {
 
         {/* Instructions */}
         {!allBlown && (
-          <p className="font-dancing text-xl md:text-2xl text-foreground/80 text-center mb-8 animate-pulse">
+          <p className="font-dancing text-xl md:text-3xl text-foreground/80 text-center mb-8 animate-pulse">
             Click on the candles one by one to blow them 🌬️
           </p>
         )}

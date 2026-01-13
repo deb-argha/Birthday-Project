@@ -1,51 +1,50 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X, ChevronRight, Heart } from "lucide-react";
-
 interface StoryModeProps {
   onClose: () => void;
 }
 
 const stories = [
   {
-    gif: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
-    text: "The way you light up every room you walk into ✨",
+    gif: "https://media.tenor.com/saJkA-UIuoYAAAAi/peach-goma.gif",
+    text: "Sometimes Energetic ⚡",
   },
   {
-    gif: "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
-    text: "Your infectious laughter that makes everyone smile 😊",
+    gif: "https://media.tenor.com/yhMZIW9G7BkAAAAi/peachcat-cat.gif",
+    text: "Sometimes Out of Energy :(",
   },
   {
-    gif: "https://media.giphy.com/media/l4pTdcifPZLpDjL1e/giphy.gif",
-    text: "The kindness you show to everyone around you 💕",
+    gif: "https://media.tenor.com/2m4l360ccV4AAAAi/heart.gif",
+    text: "Lovely as alwaysss 💕",
   },
   {
-    gif: "https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif",
-    text: "Your determination when you set your mind to something 💪",
+    gif: "https://media.tenor.com/akBy6qWGjs4AAAAi/peach-cat-mochi-peach-cat.gif",
+    text: "Determined towards career 🤕",
   },
   {
-    gif: "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif",
-    text: "The way your eyes sparkle when you're excited 🌟",
+    gif: "https://media.tenor.com/1re8tSKaslIAAAAi/peach-cat-goma.gif",
+    text: "But sleepy everytime 😴",
   },
   {
-    gif: "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif",
-    text: "Your creativity and unique perspective on life 🎨",
+    gif: "https://media.tenor.com/o4TDDg2YRVIAAAAi/peach-cat.gif",
+    text: " A Dominating Girlfriend 😾",
   },
   {
-    gif: "https://media.giphy.com/media/l0MYGb1LuZ3n7dRnO/giphy.gif",
-    text: "How you make ordinary moments feel magical ✨",
+    gif: "https://media.tenor.com/fFCljjEa_iQAAAAi/cat-kiss.gif",
+    text: "Also Loves more her Boyfriend 🤭",
   },
   {
-    gif: "https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif",
-    text: "The comfort of just being near you 🤗",
+    gif: "https://media.tenor.com/dGLwt-9NO0wAAAAi/peach-goma.gif",
+    text: "Alawys want to be in his arms🤗",
   },
   {
-    gif: "https://media.giphy.com/media/l4pT2ASyWWGw4NbDG/giphy.gif",
-    text: "Your beautiful heart that loves so deeply 💖",
+    gif: "https://media.tenor.com/x9NDP4s0PigAAAAi/peach-cat-peachy.gif",
+    text: "She is the most beautiful girl in the World 💖",
   },
   {
-    gif: "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif",
-    text: "Everything about you makes my world better 🌈",
+    gif: "https://media1.tenor.com/m/8oKzVTLAnkIAAAAC/mochi-%E3%82%82%E3%81%A1%E3%81%AD%E3%81%93.gif",
+    text: "Everything about you makes my world better! Happy Birthday Cutie 🥳",
   },
 ];
 
@@ -98,7 +97,7 @@ const StoryMode = ({ onClose }: StoryModeProps) => {
             <img
               src={stories[currentIndex].gif}
               alt="Story moment"
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </div>

@@ -19,7 +19,9 @@ const Footer = () => {
         </p>
         
         <p className="font-dancing text-xl text-muted-foreground">
-          Today and always, you are loved ✨
+          Today and always, you are loved😋 
+          <br />
+          from your one and only Billu 😼
         </p>
         
         <div className="mt-8 pt-8 border-t border-border/50">

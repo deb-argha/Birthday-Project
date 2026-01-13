@@ -19,8 +19,8 @@ const MessageCard = () => {
             </p>
             
             <p className="font-poppins text-muted-foreground">
-              You are my sunshine on cloudy days, my calm in every storm, 
-              and the reason behind my happiest smiles. 🌸✨
+              It's a special day for you as well for me too! Forever baby!! I will be there till the end of my life to tell you how much I love you!
+              To celebrate every birthday of yours!🥳 It's a neverending Love between us. I Love You🎀✨
             </p>
           </div>
 

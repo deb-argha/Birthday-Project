@@ -8,12 +8,12 @@ interface Reason {
 }
 
 const reasons: Reason[] = [
-  { id: 1, text: "Your beautiful smile lights up my world", icon: Sun },
-  { id: 2, text: "The way you laugh makes everything better", icon: Sparkles },
-  { id: 3, text: "Your kindness inspires me every day", icon: Heart },
-  { id: 4, text: "You believe in me when I don't", icon: Star },
-  { id: 5, text: "Every moment with you is precious", icon: Flower2 },
-  { id: 6, text: "You are my peace and my adventure", icon: Moon },
+  { id: 1, text: "You understand me like no one does", icon: Sun },
+  { id: 2, text: "You feel like my home! My World", icon: Sparkles },
+  { id: 3, text: "I Love your Continuous BakBak", icon: Heart },
+  { id: 4, text: "I feel really safe whenever I am with you", icon: Star },
+  { id: 5, text: "I love how you care about me", icon: Flower2 },
+  { id: 6, text: "You are the 'Everything' in my life I want", icon: Moon },
 ];
 
 const ReasonsSection = () => {
@@ -55,7 +55,7 @@ const ReasonsSection = () => {
           Reasons I Love You 💗
         </h3>
         <p className="font-poppins text-muted-foreground text-center mb-12">
-          (There are infinite, but here are some) ✨
+          (There are infinite, but here are some(1%)) ✨
         </p>
 
         <div className="space-y-4">
