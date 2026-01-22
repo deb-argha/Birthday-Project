@@ -10,7 +10,9 @@ It’s built with love, patience, and a lot of tiny details.
 ## A Small Note
  This is my **very first frontend project**.
 
-I'm sill learning and dont know everything yet about frontend developement, but this prject was my first real hands-on experince with building a UI, working with animations, layouts, and interactions.
+I'm sill learning and dont know everything yet about frontend developement,
+but this prject was my first real hands-on experince with building a UI,
+working with animations, layouts, and interactions.
 
 It means a lot me, personally and both emotionally. It totally meant for her💌.
 
